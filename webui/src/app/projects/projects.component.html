@@ -1,0 +1,12 @@
+
+<button (click)="create()">创建项目</button>
+<ul class="projects">
+  <li *ngFor="let project of projects | paginate: { itemsPerPage: size, currentPage: number+1, totalItems: totalElements }">
+    <a class="name" routerLink="/detail/{{project.id}}"> {{project.name}}</a>
+    <span class="description">{{project.description}}</span>
+    <span class="update-date">{{project.updateDate | amTimeAgo }}</span>
+    <button class="delete" title="删除项目" (click)="delete(project)">x</button>
+  </li>
+</ul>
+
+<pagination-controls (pageChange)="pageChanged($event)" directionLinks="true" responsive="true" previousLabel="上一页" nextLabel="下一页"></pagination-controls>

@@ -1,0 +1,14 @@
+<div *ngIf="project">
+  <h2>{{project.name | uppercase}} Details</h2>
+  <div><span>id: </span>{{project.id}}</div>
+  <div>
+    <label>名称:
+      <input [(ngModel)]="project.name" placeholder="name" />
+    </label>
+    <label>描述:
+      <input [(ngModel)]="project.description" placeholder="description" />
+    </label>
+  </div>
+  <button (click)="goBack()">返回</button>
+  <button (click)="save()">保存</button>
+</div>

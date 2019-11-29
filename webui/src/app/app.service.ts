@@ -7,9 +7,6 @@ import {Observable} from "rxjs";
 })
 export class AppService {
 
-  constructor(private http: HttpClient,) { }
+  constructor() { }
 
-  sayHi(): Observable<any> {
-    return this.http.get("/api/sayHi");
-  }
 }

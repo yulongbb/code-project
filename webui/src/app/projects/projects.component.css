@@ -1,0 +1,45 @@
+.projects {
+    margin: 0 0 2em 0;
+    list-style-type: none;
+    padding: 0;
+    width: 100%;
+}
+
+.projects li {
+    position: relative;
+    background-color: #EEE;
+    margin: .5em;
+    padding: .3em 0;
+    height: 4em;
+    border-radius: 4px;
+}
+    
+.projects a {
+    display: inline-block;
+    line-height: 4em;
+    color: #333;
+    text-decoration: none;
+    padding: 0 1em;
+}
+  
+.projects a:hover {
+    color:#607D8B;
+    text-decoration: #333;
+}
+
+.projects .update-date{
+    float: right;
+    line-height: 4em;
+    padding: 0 1em;
+}
+  
+
+button {
+    background-color: #eee;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    cursor: hand;
+    font-family: Arial;
+}

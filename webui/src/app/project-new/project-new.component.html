@@ -1,0 +1,11 @@
+<div>
+  <label>项目名字:
+      <input #projectName />
+      <input #projectDescription />
+    </label>
+  <button (click)="add(projectName.value, projectDescription.value); projectName.value=''; projectDescription.value=''">
+    创建
+  </button>
+  <button (click)="goBack()">返回</button>
+
+</div>
