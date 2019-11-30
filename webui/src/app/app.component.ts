@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {AppService} from "./app.service";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -8,8 +9,13 @@ import {AppService} from "./app.service";
 })
 export class AppComponent {
 
-  constructor(){
+  constructor(
+    private router: Router
+  ){}
 
+  create(): void {
+    this.router.navigateByUrl('/new');
   }
+
 
 }

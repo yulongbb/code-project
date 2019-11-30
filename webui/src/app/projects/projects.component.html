@@ -1,7 +1,7 @@
 
-<button (click)="create()">创建项目</button>
-<ul class="projects">
-  <li *ngFor="let project of projects | paginate: { itemsPerPage: size, currentPage: number+1, totalItems: totalElements }">
+
+<ul class="projects"  [ngClass]="{ 'hidden': loading }">
+  <li class="project" *ngFor="let project of asyncProjects | async | paginate: { id: 'server', itemsPerPage: 10, currentPage: p+1, totalItems: total }">
     <a class="name" routerLink="/detail/{{project.id}}"> {{project.name}}</a>
     <span class="description">{{project.description}}</span>
     <span class="update-date">{{project.updateDate | amTimeAgo }}</span>
@@ -9,4 +9,8 @@
   </li>
 </ul>
 
-<pagination-controls (pageChange)="pageChanged($event)" directionLinks="true" responsive="true" previousLabel="上一页" nextLabel="下一页"></pagination-controls>
+
+<div class="pagination">
+    <div class="spinner" [ngClass]="{ 'hidden': !loading }"></div>
+    <pagination-controls id="server" (pageChange)="getProjects($event)" previousLabel="上一页" nextLabel="下一页"></pagination-controls>
+</div>

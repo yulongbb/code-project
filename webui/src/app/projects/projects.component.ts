@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ProjectService } from '../project.service';
 import { Project } from '../project';
-import * as moment from 'moment';
-import { Router } from '@angular/router';
 import { Page } from 'ngx-pagination/dist/pagination-controls.directive';
+import { map, tap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-projects',
@@ -12,43 +12,38 @@ import { Page } from 'ngx-pagination/dist/pagination-controls.directive';
 })
 export class ProjectsComponent implements OnInit {
   page: Page;
-  size: number;
-  number: number;
-  totalElements: number;
-  projects: any[];
+
+  asyncProjects: Observable<Project[]>;
+  p: number = 1;
+  total: number;
+  loading: boolean;
 
   constructor(
     private service: ProjectService,
-    private router: Router
   ) {
 
   }
 
   ngOnInit() {
-    this.getProjects(1, 10);
+    this.getProjects(1);
   }
 
-  getProjects(number, size) {
-    this.service.getProjects(number, size).subscribe(page =>{
-      this.page = page;
-      this.projects = page.content;
-      this.size = page.size;
-      this.number = page.number;
-      this.totalElements = page.totalElements
-    });
+  getProjects(number) {
+    this.loading = true;
+    this.asyncProjects = this.service.getProjects(number, 10).pipe(
+      tap(page => {
+        this.total = page.totalElements;
+        this.p = page.number;
+        this.loading = false;
+      }),
+      map(page => page.content)
+    );
   }
 
-  pageChanged(event){
-    this.getProjects(event, 10);
-  }
 
-  create(): void {
-    this.router.navigateByUrl('/new');
-  }
-
-  delete(project: Project): void {
-    this.projects = this.projects.filter(p => p !== project);
-    this.service.deleteProject(project).subscribe();
-  }
+  // delete(project: Project): void {
+  //   this.projects = this.projects.filter(p => p !== project);
+  //   this.service.deleteProject(project).subscribe();
+  // }
 
 }
