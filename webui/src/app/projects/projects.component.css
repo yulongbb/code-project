@@ -1,61 +1,66 @@
 /* 项目列表 */
 .projects {
-    margin: 0 0 .5em 0;
-    list-style-type: none;
-    padding: 0;
-    width: 100%;
+  margin: 0 0 .5em 0;
+  list-style-type: none;
+  padding: 0;
+  width: 100%;
 }
 
 /* 项目 */
 .projects li {
-    position: relative;
-    background-color: #EEE;
-    margin: .25em .5em;
-    padding: .1em 0;
-    height: 3em;
-    border-radius: 4px;
-}
-
-.projects .project{
-    font-size: 1.25em;
+  position: relative;
+  background-color: #EEE;
+  margin: .25em .5em;
+  padding: .5em;
+  height: 3em;
+  border-radius: 4px;
+  font-size: 1.25em;
 }
 
 .projects a {
-    display: inline-block;
-    line-height: 3em;
-    color: #333;
-    text-decoration: none;
-    padding: 0 .5em;
+  display: inline-block;
+  line-height: 1.5em;
+  color: #333;
+  text-decoration: none;
+}
+
+.full-height{
+  line-height: 3em !important;
 }
   
 .projects a:hover {
-    color:#607D8B;
-    text-decoration: #333;
+  color:#607D8B;
+  text-decoration: #333;
+}
+
+.projects .content{
+  width: 75%;
+  float: left;
+}
+
+.projects .description{
+  line-height: 1.5em;
 }
 
 .projects .update-date{
-    float: right;
-    line-height: 3em;
-    padding: 0 1em;
+  float: right;
+  line-height: 3em;
+  padding: 0 1em;
 }
   
 
 /* 按钮 */
 button {
-    border: none;
-    padding: 5px 10px;
-    border-radius: 4px;
-    cursor: pointer;
-    cursor: hand;
-    font-family: Arial;
-    font-size: 1.25em;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  cursor: hand;
+  font-family: Arial;
+  font-size: 1.25em;
 }
 
-/* 删除按钮 */
-.delete{
-    background-color: #fafbfc;
-    color: #cb2431;
-}
+
 
 .pagination{
     text-align: center;

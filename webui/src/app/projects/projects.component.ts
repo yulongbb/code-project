@@ -4,6 +4,8 @@ import { Project } from '../project';
 import { Page } from 'ngx-pagination/dist/pagination-controls.directive';
 import { map, tap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import * as moment  from 'moment';
+
 
 @Component({
   selector: 'app-projects',
@@ -21,11 +23,12 @@ export class ProjectsComponent implements OnInit {
   constructor(
     private service: ProjectService,
   ) {
-
+    moment.locale('zh-cn');
   }
 
   ngOnInit() {
     this.getProjects(1);
+
   }
 
   getProjects(number) {
@@ -41,9 +44,5 @@ export class ProjectsComponent implements OnInit {
   }
 
 
-  // delete(project: Project): void {
-  //   this.projects = this.projects.filter(p => p !== project);
-  //   this.service.deleteProject(project).subscribe();
-  // }
 
 }

@@ -24,7 +24,7 @@ export class ProjectNewComponent implements OnInit {
   add(name: string, description: string): void {
     name = name.trim();
     description = description.trim();
-    if (!name||!description) { return; }
+    if (!name) { return; }
     this.service.addProject({ name, description } as Project).subscribe(project => {
       this.router.navigateByUrl('/projects');
     })

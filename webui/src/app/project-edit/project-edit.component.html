@@ -9,6 +9,8 @@
       <input [(ngModel)]="project.description" placeholder="description" />
     </label>
   </div>
+  <button class="delete" title="删除项目" (click)="delete(project)">x</button>
+
   <button (click)="goBack()">返回</button>
   <button (click)="save()">保存</button>
 </div>

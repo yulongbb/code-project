@@ -7,3 +7,9 @@ button {
     cursor: hand;
     font-family: Arial;
 }
+
+/* 删除按钮 */
+.delete{
+    background-color: #fafbfc;
+    color: #cb2431;
+}
