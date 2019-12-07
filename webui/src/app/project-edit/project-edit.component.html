@@ -1,16 +1,16 @@
-<div *ngIf="project">
-  <h2>{{project.name | uppercase}} Details</h2>
-  <div><span>id: </span>{{project.id}}</div>
-  <div>
-    <label>名称:
-      <input [(ngModel)]="project.name" placeholder="name" />
-    </label>
-    <label>描述:
-      <input [(ngModel)]="project.description" placeholder="description" />
-    </label>
-  </div>
-  <button class="delete" title="删除项目" (click)="delete(project)">x</button>
+<div class="edit" *ngIf="project">
+  <button class="delete" title="删除项目" (click)="delete(project)">删除</button>
+  <div style="clear: both;"></div>
 
-  <button (click)="goBack()">返回</button>
-  <button (click)="save()">保存</button>
+  <label>
+    <span>名字:</span>
+    <input [(ngModel)]="project.name" placeholder="请输入项目名称" />
+  </label>
+  <label>
+    <span>描述:</span>
+    <textarea rows="2" [(ngModel)]="project.description" placeholder="请输入项目描述"></textarea>
+  </label>
+
+  <button class="back" (click)="goBack()">返回</button>
+  <button class="save" (click)="save()">保存</button>
 </div>

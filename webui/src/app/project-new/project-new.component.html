@@ -1,13 +1,14 @@
-<div>
-  <label>名字:
+<div class="new">
+  <label>
+    <span>名字:</span>
     <input #projectName />
   </label>
-  <label>描述:
-    <input #projectDescription />
+  <label>
+    <span>描述:</span>
+    <textarea rows="2" #projectDescription></textarea>
   </label>
-  <button (click)="add(projectName.value, projectDescription.value); projectName.value=''; projectDescription.value=''">
+  <button class="create" (click)="add(projectName.value, projectDescription.value); projectName.value=''; projectDescription.value=''">
     创建
   </button>
-  <button (click)="goBack()">返回</button>
-
+  <button class="back" (click)="goBack()">返回</button>
 </div>

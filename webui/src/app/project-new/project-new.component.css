@@ -1,3 +1,26 @@
+.new{
+    width: 55%;
+    margin: 0 auto;
+    font-size: 1.25em;
+}
+
+.new label{
+    display: block;
+    margin: 10px auto;
+}
+
+.new span:after {
+    padding-left: 5px;
+    color: #cb2431;
+    content: "*";
+}
+
+.new input,textarea{
+    width: 100%;
+    min-height: 34px;
+    font-size: 1.25em;
+}
+
 button {
     background-color: #eee;
     border: none;
@@ -5,5 +28,19 @@ button {
     border-radius: 4px;
     cursor: pointer;
     cursor: hand;
-    font-family: Arial;
+    font-size: 1em;
+}
+
+.create{
+    background-color: #28a745;
+    color: #fafbfc;
+    margin-left: auto;
+    margin-right: .5em;
+}
+
+.back{
+    background-color: #cacaca;
+    color: #24292e;
+    margin-left: auto;
+    margin-right: .5em;
 }

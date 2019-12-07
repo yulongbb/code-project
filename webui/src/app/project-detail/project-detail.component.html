@@ -1,10 +1,12 @@
-<div *ngIf="project">
-  <button (click)="edit(project.id)">编辑</button>
-  <h2>{{project.name | uppercase}} Details</h2>
-  <div><span>id: </span>{{project.id}}</div>
-  <div><span>名称: </span>{{project.name}}</div>
-  <div><span>描述: </span>{{project.description}}</div>
-  <div><span>创建时间: </span>{{project.createDate | amLocal | amDateFormat: 'YYYY-MM-DD HH:mm'}}</div>
-  <div><span>修改时间: </span>{{project.updateDate | amLocal | amDateFormat: 'YYYY-MM-DD HH:mm'}}</div>
-  <button (click)="goBack()">返回</button>
+<div class="detail" *ngIf="project">
+  <button class="back" (click)="goBack()">返回</button>
+  <button class="edit" (click)="edit(project.id)">编辑</button>
+  <div style="clear: both;"></div>
+
+  <div class="cover">
+    <h2 class="name">{{project.name | uppercase}}</h2>
+    <p class="description">{{project.description}}</p>
+    <span class="createDate">{{project.createDate | amLocal | amDateFormat: 'YYYY-MM-DD HH:mm'}}</span>
+    <span class="updateDate">{{project.updateDate | amTimeAgo }}</span>
+  </div>
 </div>
