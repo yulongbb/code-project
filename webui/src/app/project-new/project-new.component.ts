@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProjectService } from '../project.service';
 import { Project } from '../project';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
 @Component({
@@ -12,6 +12,7 @@ import { Location } from '@angular/common';
 export class ProjectNewComponent implements OnInit {
 
   constructor(
+    private route: ActivatedRoute,
     private service: ProjectService,
     private router: Router,
     private location: Location
@@ -25,8 +26,9 @@ export class ProjectNewComponent implements OnInit {
     name = name.trim();
     description = description.trim();
     if (!name) { return; }
-    this.service.addProject({ name, description } as Project).subscribe(project => {
-      this.router.navigateByUrl('/projects');
+    const id = this.route.snapshot.paramMap.get('id');
+    this.service.addProject(id, { name, description } as Project).subscribe(project => {
+      (id)?this.router.navigateByUrl(`/projects/${id}`):this.router.navigateByUrl('/projects');
     })
   }
 

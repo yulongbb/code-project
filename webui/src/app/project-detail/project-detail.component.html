@@ -9,4 +9,17 @@
     <span class="createDate">{{project.createDate | amLocal | amDateFormat: 'YYYY-MM-DD HH:mm'}}</span>
     <span class="updateDate">{{project.updateDate | amTimeAgo }}</span>
   </div>
+
+  <button *ngIf="!project.isChildren" class="create" (click)="create(project.id)">创建子项目</button>
+
+  <ul class="projects"  [ngClass]="{ 'hidden': loading }">
+    <li class="children" *ngFor="let children of project.children">
+      <div class="content">
+        <a [class.full-height]="!children.description" routerLink="/projects/{{project.id}}/children/{{children.id}}"> {{project.name}}</a>
+        <p class="description">{{children.description}}</p>
+      </div>
+      <span class="update-date">{{children.updateDate | amTimeAgo }}</span>
+    </li>
+  </ul>
+
 </div>

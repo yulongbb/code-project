@@ -9,12 +9,13 @@ import { ProjectEditComponent } from './project-edit/project-edit.component';
 const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   { path: 'dashboard', component: DashboardComponent },
-  { path: 'new', component: ProjectNewComponent },
-  { path: 'detail/:id/edit', component: ProjectEditComponent },
-  { path: 'detail/:id', component: ProjectDetailComponent },
   { path: 'projects', component: ProjectsComponent },
+  { path: 'projects/new', component: ProjectNewComponent },
+  { path: 'projects/:id', component: ProjectDetailComponent },
+  { path: 'projects/:id/edit', component: ProjectEditComponent },
+  { path: 'projects/:id/create', component: ProjectNewComponent },
+  { path: 'projects/:id/children/:cid', component: ProjectDetailComponent },
 ];
-
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

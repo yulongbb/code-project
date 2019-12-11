@@ -18,7 +18,7 @@ public class ProjectServiceImpl implements ProjectService {
 
     @Override
     public Page<Project> getAllProjects(PageRequest pageRequest) {
-        return this.projectRepository.findAll(pageRequest);
+        return this.projectRepository.findByParentNull(pageRequest);
     }
 
     @Override
@@ -46,5 +46,13 @@ public class ProjectServiceImpl implements ProjectService {
     public Project updateProject(Long id, Project project) {
         project.setUpdateDate(new Date());
         return this.projectRepository.save(project);
+    }
+
+    @Override
+    public Project createChildProject(Long id, Project project) {
+        Project parent = this.projectRepository.findOne(id);
+        project.setParent(parent);
+        project.setIsChildren(true);
+        return this.createProject(project);
     }
 }

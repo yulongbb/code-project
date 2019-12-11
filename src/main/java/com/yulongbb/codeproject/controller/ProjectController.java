@@ -68,6 +68,16 @@ public class ProjectController {
         return this.projectService.deleteProject(id);
     }
 
+    /**
+     * 创建子项目
+     * @param id
+     * @param project
+     * @return
+     */
+    @PostMapping("/project/{id}/create")
+    public Project createChildProject(@PathVariable Long id, @RequestBody Project project){
+        return this.projectService.createChildProject(id, project);
+    }
 
 
 }

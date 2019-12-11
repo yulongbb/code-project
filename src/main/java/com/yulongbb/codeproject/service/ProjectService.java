@@ -14,4 +14,6 @@ public interface ProjectService {
     Project getProjectDetail(Long id);
 
     Project updateProject(Long id, Project project);
+
+    Project createChildProject(Long id, Project project);
 }

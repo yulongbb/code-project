@@ -14,7 +14,7 @@ export class AppComponent {
   ){}
 
   create(): void {
-    this.router.navigateByUrl('/new');
+    this.router.navigateByUrl('/projects/new');
   }
 
 

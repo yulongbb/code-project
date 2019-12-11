@@ -12,7 +12,7 @@ import { Location } from '@angular/common';
 export class ProjectDetailComponent implements OnInit {
 
   @Input() project: Project;
-
+  
   constructor(
     private route: ActivatedRoute,
     private service: ProjectService,
@@ -26,7 +26,17 @@ export class ProjectDetailComponent implements OnInit {
 
   getProject(){
     const id = this.route.snapshot.paramMap.get('id');
-    this.service.getProject(id).subscribe(project => this.project = project);
+    const cid = this.route.snapshot.paramMap.get('cid');
+    if(cid){
+      this.service.getProject(cid).subscribe(project =>{
+        this.project = project;
+      });
+    }else{
+      this.service.getProject(id).subscribe(project =>{
+        this.project = project;
+      });
+    }
+    
   }
 
   save():void{
@@ -34,11 +44,16 @@ export class ProjectDetailComponent implements OnInit {
   }
 
   edit(id):void{
-    this.router.navigateByUrl(`/detail/${id}/edit`);
+    this.router.navigateByUrl(`/projects/${id}/edit`);
   }
 
   goBack(): void {
     this.location.back();
   }
+
+  create(id): void {
+    this.router.navigateByUrl(`/projects/${id}/create`);
+  }
+
 
 }

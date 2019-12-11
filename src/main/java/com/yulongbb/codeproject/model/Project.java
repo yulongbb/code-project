@@ -1,9 +1,11 @@
 package com.yulongbb.codeproject.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 /**
  * 项目
@@ -17,6 +19,14 @@ public class Project {
     private String description; // 描述
     private Date createDate; // 创建时间
     private Date updateDate; // 更新时间
+    private Boolean isChildren; // 是否为子项目
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "parent_id")
+    private Project parent;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "parent")
+    private List<Project> children;
 
     public Long getId() {
         return id;
@@ -56,5 +66,29 @@ public class Project {
 
     public void setUpdateDate(Date updateDate) {
         this.updateDate = updateDate;
+    }
+
+    public Project getParent() {
+        return parent;
+    }
+
+    public void setParent(Project parent) {
+        this.parent = parent;
+    }
+
+    public List<Project> getChildren() {
+        return children;
+    }
+
+    public Boolean getIsChildren() {
+        return isChildren;
+    }
+
+    public void setIsChildren(Boolean children) {
+        this.isChildren = children;
+    }
+
+    public void setChildren(List<Project> children) {
+        this.children = children;
     }
 }

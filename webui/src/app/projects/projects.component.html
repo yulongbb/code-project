@@ -3,7 +3,7 @@
 <ul class="projects"  [ngClass]="{ 'hidden': loading }">
   <li class="project" *ngFor="let project of asyncProjects | async | paginate: { id: 'server', itemsPerPage: 10, currentPage: p+1, totalItems: total }">
     <div class="content">
-      <a [class.full-height]="!project.description" routerLink="/detail/{{project.id}}"> {{project.name}}</a>
+      <a [class.full-height]="!project.description" routerLink="/projects/{{project.id}}"> {{project.name}}</a>
       <p class="description">{{project.description}}</p>
     </div>
     <span class="update-date">{{project.updateDate | amTimeAgo }}</span>

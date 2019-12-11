@@ -26,13 +26,18 @@ export class ProjectService {
     return this.http.put<Project>(`/api/project/${project.id}`, project)
   }
 
-  addProject(project: Project): Observable<Project> {
-    return this.http.post<Project>(`/api/project`, project);
+  addProject(id:string, project: Project): Observable<Project> {
+    let url;
+    if(id){
+      url = `/api/project/${id}/create`;
+    }else{
+      url = `/api/project`;
+    }
+    return this.http.post<Project>(url, project);
   }
 
   deleteProject(project: Project): Observable<Project> {
     return this.http.delete<Project>(`/api/project/${project.id}`);
   }
-
 
 }

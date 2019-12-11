@@ -21,6 +21,10 @@ header a{
     color: #fafbfc;
 }
 
+.action{
+    float: right;
+}
+
 /* 按钮 */
 button {
     border: none;
@@ -39,3 +43,21 @@ button {
     margin-left: auto;
     margin-right: .5em;
 }
+
+/* 登录按钮 */
+.login{
+    background-color: #28a745;
+    color: #fafbfc;
+    margin-left: auto;
+    margin-right: .5em;
+}
+
+/* 注册按钮 */
+.register{
+    background-color: #28a745;
+    color: #fafbfc;
+    margin-left: auto;
+    margin-right: .5em;
+}
+
+
