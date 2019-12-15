@@ -1,7 +1,9 @@
 package com.yulongbb.codeproject.service.impl;
 
 import com.yulongbb.codeproject.dao.ProjectRepository;
+import com.yulongbb.codeproject.dao.UserRepository;
 import com.yulongbb.codeproject.model.Project;
+import com.yulongbb.codeproject.model.User;
 import com.yulongbb.codeproject.service.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -16,16 +18,25 @@ public class ProjectServiceImpl implements ProjectService {
     @Autowired
     private ProjectRepository projectRepository;
 
+    @Autowired
+    private UserRepository userRepository;
+
+
     @Override
-    public Page<Project> getAllProjects(PageRequest pageRequest) {
-        return this.projectRepository.findByParentNull(pageRequest);
+    public Project createProject(String username, Project project) {
+        User user = this.userRepository.findByUsername(username);
+        project.setCreateDate(new Date());
+        project.setUpdateDate(new Date());
+        project.setUser(user);
+        return this.projectRepository.save(project);
     }
 
     @Override
-    public Project createProject(Project project) {
-        project.setCreateDate(new Date());
-        project.setUpdateDate(new Date());
-        return this.projectRepository.save(project);
+    public Project createChildProject(String username, Long id, Project project) {
+        Project parent = this.projectRepository.findOne(id);
+        project.setParent(parent);
+        project.setIsChildren(true);
+        return this.createProject(username, project);
     }
 
     @Override
@@ -48,11 +59,11 @@ public class ProjectServiceImpl implements ProjectService {
         return this.projectRepository.save(project);
     }
 
+
+
     @Override
-    public Project createChildProject(Long id, Project project) {
-        Project parent = this.projectRepository.findOne(id);
-        project.setParent(parent);
-        project.setIsChildren(true);
-        return this.createProject(project);
+    public Page<Project> getProjectsByUser(String username, PageRequest pageRequest) {
+        User user = this.userRepository.findByUsername(username);
+        return this.projectRepository.findByUserAndParentNull(user, pageRequest);
     }
 }

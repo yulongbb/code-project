@@ -13,7 +13,11 @@ import { ProjectService } from './project.service';
 import { ProjectDetailComponent } from './project-detail/project-detail.component';
 import { ProjectNewComponent } from './project-new/project-new.component';
 import { ProjectEditComponent } from './project-edit/project-edit.component';
-import { NgxPaginationModule } from 'ngx-pagination'; 
+import { NgxPaginationModule } from 'ngx-pagination';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component'; 
+import { UserService } from './user.service';
+import { UserNewComponent } from './user-new/user-new.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +26,10 @@ import { NgxPaginationModule } from 'ngx-pagination';
     DashboardComponent,
     ProjectDetailComponent,
     ProjectNewComponent,
-    ProjectEditComponent
+    ProjectEditComponent,
+    LoginComponent,
+    RegisterComponent,
+    UserNewComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +39,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     MomentModule,
     NgxPaginationModule,
   ],
-  providers: [AppService, ProjectService],
+  providers: [AppService, ProjectService, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

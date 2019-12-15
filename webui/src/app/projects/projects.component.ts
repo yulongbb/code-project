@@ -5,6 +5,8 @@ import { Page } from 'ngx-pagination/dist/pagination-controls.directive';
 import { map, tap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import * as moment  from 'moment';
+import { ActivatedRoute } from '@angular/router';
+import { User } from '../user';
 
 
 @Component({
@@ -14,26 +16,30 @@ import * as moment  from 'moment';
 })
 export class ProjectsComponent implements OnInit {
   page: Page;
+  currentUser: User;
 
   asyncProjects: Observable<Project[]>;
   p: number = 1;
   total: number;
   loading: boolean;
 
+
   constructor(
     private service: ProjectService,
+    private route: ActivatedRoute,
   ) {
     moment.locale('zh-cn');
+    this.currentUser = new User();
   }
 
   ngOnInit() {
-    this.getProjects(1);
-
+    this.currentUser.username = this.route.snapshot.paramMap.get('username');
+    this.getProjects(this.currentUser.username, 1);
   }
 
-  getProjects(number) {
+  getProjects(username, number) {
     this.loading = true;
-    this.asyncProjects = this.service.getProjects(number, 10).pipe(
+    this.asyncProjects = this.service.getProjects(username, number, 10).pipe(
       tap(page => {
         this.total = page.totalElements;
         this.p = page.number;

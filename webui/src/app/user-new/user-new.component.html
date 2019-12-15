@@ -1,0 +1,19 @@
+<div class="user-new">
+  <label>
+    <span>用户名:</span>
+    <input type="text" #username />
+  </label>
+  <label>
+    <span>密码:</span>
+    <input type="password" #password />
+  </label>
+  <label>
+    <span>姓名:</span>
+    <input type="text" #nickname />
+  </label>
+  <button class="create"
+    (click)="create(username.value, password.value, '个人', nickname.value); username.value=''; password.value=''; type='个人'; nickname.value=''">
+    创建
+  </button>
+  <button class="back" (click)="goBack()">返回</button>
+</div>

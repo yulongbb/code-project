@@ -3,6 +3,7 @@ import { Project } from '../project';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProjectService } from '../project.service';
 import { Location } from '@angular/common';
+import { User } from '../user';
 
 @Component({
   selector: 'app-project-edit',
@@ -11,15 +12,19 @@ import { Location } from '@angular/common';
 })
 export class ProjectEditComponent implements OnInit {
   @Input() project: Project;
+  currentUser: User;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private service: ProjectService,
     private location: Location
-  ) { }
+  ) { 
+    this.currentUser = new User();
+  }
 
   ngOnInit() {
+    this.currentUser.username = this.route.snapshot.paramMap.get('username');
     this.getProject();
   }
 
@@ -41,7 +46,7 @@ export class ProjectEditComponent implements OnInit {
   }
 
   goProjects(): void {
-    this.router.navigateByUrl('/projects');
+    this.router.navigateByUrl(`${this.currentUser.username}`);
   }
 
 }

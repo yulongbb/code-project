@@ -24,9 +24,12 @@ public class Project {
     @ManyToOne
     @JoinColumn(name = "parent_id")
     private Project parent;
-
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "parent")
     private List<Project> children;
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
     public Long getId() {
         return id;
@@ -90,5 +93,13 @@ public class Project {
 
     public void setChildren(List<Project> children) {
         this.children = children;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

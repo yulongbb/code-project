@@ -5,9 +5,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 
 public interface ProjectService {
-    Page<Project> getAllProjects(PageRequest pageRequest);
 
-    Project createProject(Project project);
+    Project createProject(String username, Project project);
+
+    Project createChildProject(String username,Long id, Project project);
 
     Project deleteProject(Long id);
 
@@ -15,5 +16,6 @@ public interface ProjectService {
 
     Project updateProject(Long id, Project project);
 
-    Project createChildProject(Long id, Project project);
+
+    Page<Project> getProjectsByUser(String username, PageRequest pageRequest);
 }

@@ -25,6 +25,10 @@ header a{
     float: right;
 }
 
+.action a{
+    color: #fafbfc;
+}
+
 /* 按钮 */
 button {
     border: none;

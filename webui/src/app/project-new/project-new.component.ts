@@ -3,6 +3,8 @@ import { ProjectService } from '../project.service';
 import { Project } from '../project';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
+import { UserService } from '../user.service';
+import { User } from '../user';
 
 @Component({
   selector: 'app-project-new',
@@ -21,14 +23,15 @@ export class ProjectNewComponent implements OnInit {
   ngOnInit() {
   }
 
-  
+
   add(name: string, description: string): void {
     name = name.trim();
     description = description.trim();
     if (!name) { return; }
     const id = this.route.snapshot.paramMap.get('id');
-    this.service.addProject(id, { name, description } as Project).subscribe(project => {
-      (id)?this.router.navigateByUrl(`/projects/${id}`):this.router.navigateByUrl('/projects');
+    const username = this.route.snapshot.paramMap.get('username');
+    this.service.addProject(username, id, { name, description } as Project).subscribe(project => {
+      (id) ? this.router.navigateByUrl(`${username}/${id}`) : this.router.navigateByUrl(`${username}`);
     })
   }
 

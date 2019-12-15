@@ -15,16 +15,16 @@ public class ProjectController {
     @Autowired
     private ProjectService projectService;
 
-
     /**
-     * 分页获取全部项目
+     * 分页获取当前用户的全部项目
+     * @param username 当前登录用户名
      * @param index 页码
      * @param size 页大小
      * @return
      */
-    @GetMapping("/project/p/{index}")
-    public Page<Project> getAllProjects(@PathVariable int index, @RequestParam int size){
-        return this.projectService.getAllProjects( new PageRequest(index-1, size));
+    @GetMapping("{username}/project/p/{index}")
+    public Page<Project> getProjectsByUser(@PathVariable String username, @PathVariable int index, @RequestParam int size){
+        return this.projectService.getProjectsByUser( username, new PageRequest(index-1, size));
     }
 
     /**
@@ -38,13 +38,25 @@ public class ProjectController {
     }
 
     /**
-     * 创建项目
+     * 当前用户创建项目
+     * @param username 当前登录用户名
      * @param project 项目对象
      * @return
      */
-    @PostMapping("/project")
-    public Project createProject(@RequestBody Project project){
-        return this.projectService.createProject(project);
+    @PostMapping("{username}/project")
+    public Project createProject(@PathVariable String username, @RequestBody Project project){
+        return this.projectService.createProject(username, project);
+    }
+
+    /**
+     * 创建子项目
+     * @param id
+     * @param project
+     * @return
+     */
+    @PostMapping("{username}/project/{id}/create")
+    public Project createChildProject(@PathVariable String username, @PathVariable Long id, @RequestBody Project project){
+        return this.projectService.createChildProject(username, id, project);
     }
 
     /**
@@ -68,16 +80,7 @@ public class ProjectController {
         return this.projectService.deleteProject(id);
     }
 
-    /**
-     * 创建子项目
-     * @param id
-     * @param project
-     * @return
-     */
-    @PostMapping("/project/{id}/create")
-    public Project createChildProject(@PathVariable Long id, @RequestBody Project project){
-        return this.projectService.createChildProject(id, project);
-    }
+
 
 
 }

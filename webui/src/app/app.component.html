@@ -1,11 +1,16 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <header>
-    <h1 class="title"><a routerLink="/projects">项目管理系统</a></h1>
+    <h1 *ngIf="!currentUser" class="title"><a routerLink="/login">项目管理系统</a></h1>
+    <h1 *ngIf="currentUser&&!currentUser.parent&&currentUser.type=='个人'" class="title"><a routerLink="/login">项目管理系统</a></h1>
+    <h1 *ngIf="currentUser&&currentUser.parent&&currentUser.type=='个人'" class="title"><a routerLink="/dashboard">{{currentUser.parent.nickname}}</a></h1>
+    <h1 *ngIf="currentUser&&currentUser.type=='组织'" class="title"><a routerLink="/dashboard">{{currentUser.nickname}}</a></h1>
     <div class="action">
-        <button class="login" (click)="login()">登录</button>
-        <button class="register" (click)="register()">注册</button>
+        <button *ngIf="!currentUser" class="login" (click)="login()">登录</button>
+        <button *ngIf="!currentUser" class="register" (click)="register()">注册</button>
+        <button *ngIf="currentUser" class="create" (click)="createProject()">创建项目</button>
+        <button *ngIf="currentUser&&currentUser.type=='组织'" class="create" (click)="createUser()">创建子账户</button>
+        <a *ngIf="currentUser" routerLink="{{currentUser.username}}">{{currentUser.username}}</a>
+        <button *ngIf="currentUser" class="logout" (click)="logout()">注销</button>
     </div>
-    
-    <!-- <button class="create" (click)="create()">创建项目</button> -->
 </header>
 <router-outlet></router-outlet>

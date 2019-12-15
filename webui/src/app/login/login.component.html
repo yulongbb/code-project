@@ -1,0 +1,14 @@
+<div class="login">
+  <label>
+    <span>用户名:</span>
+    <input type="text" #username />
+  </label>
+  <label>
+    <span>密码:</span>
+    <input type="password" #password/>
+  </label>
+  <button class="create" (click)="login(username.value, password.value); username.value=''; password.value=''">
+    登录
+  </button>
+  <button class="back" (click)="goBack()">返回</button>
+</div>

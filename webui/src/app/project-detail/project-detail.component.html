@@ -1,6 +1,6 @@
 <div class="detail" *ngIf="project">
   <button class="back" (click)="goBack()">返回</button>
-  <button class="edit" (click)="edit(project.id)">编辑</button>
+  <button class="edit" (click)="edit(currentUser.username, project.id)">编辑</button>
   <div style="clear: both;"></div>
 
   <div class="cover">
@@ -10,12 +10,12 @@
     <span class="updateDate">{{project.updateDate | amTimeAgo }}</span>
   </div>
 
-  <button *ngIf="!project.isChildren" class="create" (click)="create(project.id)">创建子项目</button>
+  <button *ngIf="!project.isChildren" class="create" (click)="create(currentUser.username, project.id)">创建子项目</button>
 
   <ul class="projects"  [ngClass]="{ 'hidden': loading }">
     <li class="children" *ngFor="let children of project.children">
       <div class="content">
-        <a [class.full-height]="!children.description" routerLink="/projects/{{project.id}}/children/{{children.id}}"> {{project.name}}</a>
+        <a [class.full-height]="!children.description" routerLink="/{{currentUser.username}}/{{project.id}}/children/{{children.id}}"> {{children.name}}</a>
         <p class="description">{{children.description}}</p>
       </div>
       <span class="update-date">{{children.updateDate | amTimeAgo }}</span>
