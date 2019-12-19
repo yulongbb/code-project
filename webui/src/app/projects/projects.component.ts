@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ProjectService } from '../project.service';
 import { Project } from '../project';
 import { Page } from 'ngx-pagination/dist/pagination-controls.directive';
@@ -16,13 +16,12 @@ import { User } from '../user';
 })
 export class ProjectsComponent implements OnInit {
   page: Page;
-  currentUser: User;
+  @Input() currentUser: User;
 
   asyncProjects: Observable<Project[]>;
   p: number = 1;
   total: number;
   loading: boolean;
-
 
   constructor(
     private service: ProjectService,
@@ -33,7 +32,9 @@ export class ProjectsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.currentUser.username = this.route.snapshot.paramMap.get('username');
+    if(this.route.snapshot.paramMap.get('username')){
+      this.currentUser.username = this.route.snapshot.paramMap.get('username');
+    }
     this.getProjects(this.currentUser.username, 1);
   }
 
@@ -48,7 +49,5 @@ export class ProjectsComponent implements OnInit {
       map(page => page.content)
     );
   }
-
-
 
 }

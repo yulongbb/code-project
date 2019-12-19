@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
 import { Router } from '@angular/router';
-import { Location } from '@angular/common';
 import { User } from '../user';
 import { first } from 'rxjs/operators';
 
@@ -15,7 +14,6 @@ export class LoginComponent implements OnInit {
   constructor(
     private service: UserService,
     private router: Router,
-    private location: Location
   ) { }
 
   ngOnInit() {
@@ -30,11 +28,15 @@ export class LoginComponent implements OnInit {
       .pipe(first())
       .subscribe(
         user => {
-          this.router.navigate([`/${user.username}`]);
+          this.router.navigate([`/dashboard`]);
         },
         error => {
           alert('无法登录');
         });
+  }
+
+  register(){
+    this.router.navigateByUrl('/register');
   }
 }
 

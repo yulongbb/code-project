@@ -1,59 +1,82 @@
 .register{
-    width: 55%;
-    margin: 0 auto;
-    font-size: 1.25em;
+    width: 100%;
+    height: 100%;
 }
 
-.register label{
+.left{
+    width: 50%;
+    float: left;
+    height: 100%;
+    background-image: url('/assets/login-bg.jpg');
+}
+
+.right{
+    width: 50%;
+    float: right;
+    height: 100%;
+}
+
+.content{
+    width: 400px;
+    height: 400px;
+    margin: 200px auto;
+}
+
+.content .title{
+    font-size: 35pt;
+    text-align: center;
+}
+
+.content .description{
+    font-size: 18pt;
+    opacity: 50%;
+    text-align: center;
+}
+
+.content label{
     display: block;
     margin: 10px auto;
 }
 
-.register span:after {
+.content .required:after {
     padding-left: 5px;
     color: #cb2431;
     content: "*";
 }
 
-.register input[type=radio]{
+.content input[type=radio]{
     min-height: 34px;
     font-size: 1.25em;
 }
 
-.register input[type=text]{
+.content input[type=text]{
     width: 100%;
     min-height: 34px;
-    font-size: 1.25em;
+    font-size: 18pt;
 }
 
-.register input[type=password]{
+.content input[type=password]{
     width: 100%;
     min-height: 34px;
-    font-size: 1.25em;
+    font-size: 18pt;
 }
 
-
-
-button {
-    background-color: #eee;
+.content button {
+    width: 180px;
+    line-break: 50px;
     border: none;
     padding: 5px 10px;
+    margin: 30px auto;
     border-radius: 4px;
     cursor: pointer;
     cursor: hand;
     font-size: 1em;
+    background-color: #fafbfc;
+    border: 1px solid #24292e;
 }
 
-.create{
+.content #register{
     background-color: #28a745;
     color: #fafbfc;
-    margin-left: auto;
-    margin-right: .5em;
-}
-
-.back{
-    background-color: #cacaca;
-    color: #24292e;
-    margin-left: auto;
-    margin-right: .5em;
+    width: 100%;
 }

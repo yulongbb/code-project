@@ -1,14 +1,26 @@
 <div class="login">
-  <label>
-    <span>用户名:</span>
-    <input type="text" #username />
-  </label>
-  <label>
-    <span>密码:</span>
-    <input type="password" #password/>
-  </label>
-  <button class="create" (click)="login(username.value, password.value); username.value=''; password.value=''">
-    登录
-  </button>
-  <button class="back" (click)="goBack()">返回</button>
+  <div class="left"></div>
+  <div class="right">
+    <div class="content">
+      <div class="title">项目管理系统</div>
+      <p class="description">欢迎来到项目管理系统</p>
+      <label>
+        <span class="required">用户名:</span>
+        <input type="text" #username />
+      </label>
+      <label>
+        <span class="required">密码:</span>
+        <input type="password" #password />
+      </label>
+      <label>
+        <span id="remember-me"><input type="checkbox">记住我</span>
+        <span id="forget-password">忘记密码</span>
+      </label>
+      <div style="clear: both;"></div>
+      <button id="login" (click)="login(username.value, password.value); username.value=''; password.value=''">
+        登录
+      </button>
+      <button id="register" (click)="register()">注册</button>
+    </div>
+  </div>
 </div>

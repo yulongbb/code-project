@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {AppService} from "./app.service";
+import { AppService } from "./app.service";
 import { Router } from '@angular/router';
 import { User } from './user';
 import { UserService } from './user.service';
@@ -16,8 +16,10 @@ export class AppComponent {
   constructor(
     private router: Router,
     private service: UserService,
-  ){
-    this.service.currentUser.subscribe(x => this.currentUser = x);
+  ) {
+    this.service.currentUser.subscribe(currentUser => { 
+      this.currentUser = currentUser;
+    });
   }
 
   /**

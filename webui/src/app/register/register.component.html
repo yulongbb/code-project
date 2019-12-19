@@ -1,20 +1,27 @@
 <div class="register">
-  <label>
-    <span>用户名:</span>
-    <input type="text" #username />
-  </label>
-  <label>
-    <span>密码:</span>
-    <input type="password" #password/>
-  </label>
-  <label>
-    <input name="type" type="radio"  value="个人" (click)="selectType(person.value)" #person checked>
-    <span>个人</span>
-    <input name="type" type="radio"  value="组织" (click)="selectType(orgnization.value)" #orgnization>
-    <span>组织</span>
-  </label>
-  <button class="create" (click)="register(username.value, password.value, type); username.value=''; password.value=''; type='个人'">
-    注册
-  </button>
-  <button class="back" (click)="goBack()">返回</button>
+  <div class="left"></div>
+  <div class="right">
+    <div class="content">
+      <div class="title">项目管理系统</div>
+      <p class="description">欢迎来到项目管理系统</p>
+      <label>
+        <span>用户名:</span>
+        <input type="text" #username />
+      </label>
+      <label>
+        <span>密码:</span>
+        <input type="password" #password />
+      </label>
+      <label>
+        <input name="type" type="radio" value="个人" (click)="selectType(person.value)" #person checked>
+        <span>个人</span>
+        <input name="type" type="radio" value="组织" (click)="selectType(orgnization.value)" #orgnization>
+        <span>组织</span>
+      </label>
+      <button id="register"
+        (click)="register(username.value, password.value, type); username.value=''; password.value=''; type='个人'">
+        注册
+      </button>
+    </div>
+  </div>
 </div>

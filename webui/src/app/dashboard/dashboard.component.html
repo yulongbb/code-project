@@ -1,3 +1,12 @@
-<p>
-  dashboard works!
-</p>
+<ul class="users">
+  <li *ngFor="let child of children">
+    <div class="user">
+      <img src="/assets/avatar.png" alt="头像" class="avatar">
+      <p class="nickname"> {{child.nickname}}</p>
+    </div>
+  </li>
+</ul>
+
+<div style="clear: both;"></div>
+
+<app-projects [currentUser]="parent"></app-projects>

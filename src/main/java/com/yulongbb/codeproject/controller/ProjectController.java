@@ -16,7 +16,7 @@ public class ProjectController {
     private ProjectService projectService;
 
     /**
-     * 分页获取当前用户的全部项目
+     * 分页获取当前用户（个人或者组织）的全部项目
      * @param username 当前登录用户名
      * @param index 页码
      * @param size 页大小
@@ -26,6 +26,8 @@ public class ProjectController {
     public Page<Project> getProjectsByUser(@PathVariable String username, @PathVariable int index, @RequestParam int size){
         return this.projectService.getProjectsByUser( username, new PageRequest(index-1, size));
     }
+
+
 
     /**
      * 获取单个项目详情

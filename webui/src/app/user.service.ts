@@ -30,6 +30,20 @@ export class UserService {
     return this.http.post<User>(`/api/user`, user);
   }
 
+  /**
+   * 获取子用户
+   * @param username 
+   * @param index 
+   * @param size 
+   */
+  getChildrenByUser(username, index, size): Observable<any> {
+    return this.http.get<any>(`/api/${username}/user/p/${index}?size=${size}`);
+  }
+
+  /**
+   * 用户登录
+   * @param user 
+   */
   login(user: User) {
     return this.http.post<any>(`/api/user/login`, user)
       .pipe(map(user => {
@@ -43,6 +57,9 @@ export class UserService {
       }));
   }
 
+  /**
+   * 用户注销
+   */
   logout() {
     // remove user from local storage to log user out
     localStorage.removeItem('currentUser');
