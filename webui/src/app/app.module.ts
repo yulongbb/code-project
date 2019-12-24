@@ -7,6 +7,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AppService } from "./app.service";
 import { HttpClientModule } from "@angular/common/http";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 import { ProjectsComponent } from './projects/projects.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProjectService } from './project.service';
@@ -18,6 +20,10 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component'; 
 import { UserService } from './user.service';
 import { UserNewComponent } from './user-new/user-new.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
+import { UsersComponent } from './users/users.component';
+import { ComputersComponent } from './computers/computers.component';
+import { ComputerService } from './computer.service';
 
 @NgModule({
   declarations: [
@@ -29,17 +35,21 @@ import { UserNewComponent } from './user-new/user-new.component';
     ProjectEditComponent,
     LoginComponent,
     RegisterComponent,
-    UserNewComponent
+    UserNewComponent,
+    UserProfileComponent,
+    UsersComponent,
+    ComputersComponent
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule, // 动画
     FormsModule,
     HttpClientModule,
     AppRoutingModule,
     MomentModule,
     NgxPaginationModule,
   ],
-  providers: [AppService, ProjectService, UserService],
+  providers: [AppService, ProjectService, UserService, ComputerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

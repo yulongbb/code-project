@@ -26,6 +26,13 @@ public class User {
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<Project> projects;
+    @JsonIgnore
+    @OneToOne
+    @JoinColumn(name="computer_id", referencedColumnName="id")
+    private Computer computer; //PC机
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "organization")
+    private List<Computer> computers;
 
     public Long getId() {
         return id;
@@ -89,5 +96,21 @@ public class User {
 
     public void setProjects(List<Project> projects) {
         this.projects = projects;
+    }
+
+    public Computer getComputer() {
+        return computer;
+    }
+
+    public void setComputer(Computer computer) {
+        this.computer = computer;
+    }
+
+    public List<Computer> getComputers() {
+        return computers;
+    }
+
+    public void setComputers(List<Computer> computers) {
+        this.computers = computers;
     }
 }

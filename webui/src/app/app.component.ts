@@ -1,18 +1,38 @@
 import { Component } from '@angular/core';
-import { AppService } from "./app.service";
 import { Router } from '@angular/router';
 import { User } from './user';
 import { UserService } from './user.service';
+import {
+  trigger,
+  state,
+  style,
+  animate,
+  transition,
+} from '@angular/animations';
 
 @Component({
   selector: 'app-root',
+  animations: [
+    trigger('hideShow', [
+      state('show', style({
+        opacity: 1,
+        top: '57px',
+      })),
+      state('hide', style({
+        opacity: 0,
+      })),
+      transition('show => hide', animate(100)),
+      transition('hide => show', animate(100))
+    ]),
+  ],
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+ 
 })
 export class AppComponent {
-
   currentUser: User;
-
+  isHide = true;
+  
   constructor(
     private router: Router,
     private service: UserService,
@@ -20,6 +40,28 @@ export class AppComponent {
     this.service.currentUser.subscribe(currentUser => { 
       this.currentUser = currentUser;
     });
+  }
+
+
+  /**
+   * 隐藏
+   */
+  hide(){
+    this.isHide = true;
+  }
+
+  /**
+   * 显示
+   */
+  show(){
+    this.isHide = false;
+  }
+  
+  /**
+   * 切换
+   */
+  toggle() {
+    this.isHide = !this.isHide;
   }
 
   /**
@@ -33,7 +75,7 @@ export class AppComponent {
    * 创建子账户
    */
   createUser(): void {
-    this.router.navigateByUrl(`${this.currentUser.username}/user/new`);
+    this.router.navigateByUrl(`${this.currentUser.username}/users/new`);
   }
 
   /**
@@ -49,6 +91,7 @@ export class AppComponent {
   logout(): void {
     this.service.logout();
     this.router.navigateByUrl('/login');
+    this.hide();
   }
 
   /**
@@ -57,6 +100,5 @@ export class AppComponent {
   register(): void {
     this.router.navigateByUrl('/register');
   }
-
 
 }

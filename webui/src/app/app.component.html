@@ -1,21 +1,26 @@
-<!--The content below is only a placeholder and can be replaced.-->
+<!-- 导航栏 -->
 <header *ngIf="currentUser">
-    <h1 class="title" *ngIf="currentUser&&!currentUser.parent&&currentUser.type=='个人'">
-        <a routerLink="/login">项目管理系统</a>
+    <!-- 标题 -->
+    <h1 class="title">
+        <a *ngIf="currentUser&&!currentUser.parent&&currentUser.type=='个人'" routerLink="/login">项目管理系统</a>
+        <a *ngIf="currentUser&&currentUser.parent&&currentUser.type=='个人'" routerLink="/dashboard">{{currentUser.parent.nickname}}</a>
+        <a *ngIf="currentUser&&currentUser.type=='组织'" routerLink="/dashboard">{{currentUser.nickname}}</a>
     </h1>
-    <h1 class="title" *ngIf="currentUser&&currentUser.parent&&currentUser.type=='个人'">
-        <a routerLink="/dashboard">{{currentUser.parent.nickname}}</a>
-    </h1>
-    <h1 class="title" *ngIf="currentUser&&currentUser.type=='组织'">
-        <a routerLink="/dashboard">{{currentUser.nickname}}</a>
-    </h1>
-    <div class="action">
-        <button *ngIf="currentUser" class="create" (click)="createProject()">创建项目</button>
-        <button *ngIf="currentUser&&currentUser.type=='组织'" class="create" (click)="createUser()">创建子账户</button>
-        <a *ngIf="currentUser" routerLink="{{currentUser.username}}">{{currentUser.username}}</a>
-        <button *ngIf="currentUser" class="logout" (click)="logout()">注销</button>
+    <!-- 头像 -->
+    <div class="action" *ngIf="currentUser">
+        <img src="/assets/avatar.png" alt="头像" class="avatar" (click)="toggle()">
+        <a>{{currentUser.username}}</a>
+        <ul class="dropdown" [@hideShow]="isHide ? 'hide' : 'show'" (mouseleave)="hide()">
+            <li><a routerLink="{{currentUser.username}}/users/profile">个人中心</a></li>
+            <li><a routerLink="{{currentUser.username}}">项目管理</a></li>
+            <li><a routerLink="/computers/{{currentUser.username}}">IP管理</a></li>
+            <li *ngIf="currentUser.type=='组织'" routerLink="{{currentUser.username}}/users"><a>子账户管理</a></li>
+            <li><a (click)="logout()">注销</a></li>
+        </ul>
     </div>
 </header>
+
+
 <main>
     <router-outlet></router-outlet>
 </main>

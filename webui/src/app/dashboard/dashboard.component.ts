@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from "@angular/platform-browser"
 import { UserService } from '../user.service';
 import { User } from '../user';
 
@@ -14,7 +15,8 @@ export class DashboardComponent implements OnInit {
   parent;
 
   constructor(
-    private userService: UserService
+    private userService: UserService,
+    private title: Title
   ) {
     this.userService.currentUser.subscribe(currentUser => {
       this.currentUser = currentUser;
@@ -22,7 +24,7 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    this.title.setTitle("概览");
     if (this.currentUser.type == '组织') {
       //登录的是组织
       this.parent = this.currentUser;

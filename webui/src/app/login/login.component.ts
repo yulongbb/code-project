@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from "@angular/platform-browser"
+
 import { UserService } from '../user.service';
 import { Router } from '@angular/router';
 import { User } from '../user';
@@ -14,9 +16,11 @@ export class LoginComponent implements OnInit {
   constructor(
     private service: UserService,
     private router: Router,
+    private title: Title,
   ) { }
 
   ngOnInit() {
+    this.title.setTitle("登录");
   }
 
   login(username: string, password: string): void {
